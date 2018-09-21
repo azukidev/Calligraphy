@@ -1,5 +1,6 @@
 package io.github.inflationx.calligraphy3;
 
+
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.text.TextPaint;
@@ -12,7 +13,7 @@ public class CalligraphyTypefaceSpan extends MetricAffectingSpan {
         if (typeface == null) {
             throw new IllegalArgumentException("typeface is null");
         }
-        
+
         this.typeface = typeface;
     }
 

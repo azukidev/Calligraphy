@@ -1,5 +1,6 @@
 package io.github.inflationx.calligraphy3;
 
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
@@ -16,6 +17,15 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatCheckBox;
+import androidx.appcompat.widget.AppCompatCheckedTextView;
+import androidx.appcompat.widget.AppCompatEditText;
+import androidx.appcompat.widget.AppCompatMultiAutoCompleteTextView;
+import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * Created by chris on 20/12/2013
@@ -50,14 +60,14 @@ public class CalligraphyConfig {
      * this adds those classes to the style lookup map
      */
     private static void addAppCompatViews() {
-        DEFAULT_STYLES.put(android.support.v7.widget.AppCompatTextView.class, android.R.attr.textViewStyle);
-        DEFAULT_STYLES.put(android.support.v7.widget.AppCompatButton.class, android.R.attr.buttonStyle);
-        DEFAULT_STYLES.put(android.support.v7.widget.AppCompatEditText.class, android.R.attr.editTextStyle);
-        DEFAULT_STYLES.put(android.support.v7.widget.AppCompatAutoCompleteTextView.class, android.R.attr.autoCompleteTextViewStyle);
-        DEFAULT_STYLES.put(android.support.v7.widget.AppCompatMultiAutoCompleteTextView.class, android.R.attr.autoCompleteTextViewStyle);
-        DEFAULT_STYLES.put(android.support.v7.widget.AppCompatCheckBox.class, android.R.attr.checkboxStyle);
-        DEFAULT_STYLES.put(android.support.v7.widget.AppCompatRadioButton.class, android.R.attr.radioButtonStyle);
-        DEFAULT_STYLES.put(android.support.v7.widget.AppCompatCheckedTextView.class, android.R.attr.checkedTextViewStyle);
+        DEFAULT_STYLES.put(AppCompatTextView.class, android.R.attr.textViewStyle);
+        DEFAULT_STYLES.put(AppCompatButton.class, android.R.attr.buttonStyle);
+        DEFAULT_STYLES.put(AppCompatEditText.class, android.R.attr.editTextStyle);
+        DEFAULT_STYLES.put(AppCompatAutoCompleteTextView.class, android.R.attr.autoCompleteTextViewStyle);
+        DEFAULT_STYLES.put(AppCompatMultiAutoCompleteTextView.class, android.R.attr.autoCompleteTextViewStyle);
+        DEFAULT_STYLES.put(AppCompatCheckBox.class, android.R.attr.checkboxStyle);
+        DEFAULT_STYLES.put(AppCompatRadioButton.class, android.R.attr.radioButtonStyle);
+        DEFAULT_STYLES.put(AppCompatCheckedTextView.class, android.R.attr.checkedTextViewStyle);
     }
 
     /**
@@ -82,6 +92,7 @@ public class CalligraphyConfig {
     private final Map<Class<? extends TextView>, Integer> mClassStyleAttributeMap;
     /**
      * Collection of custom non-{@code TextView}'s registered for applying typeface during inflation
+     *
      * @see CalligraphyConfig.Builder#addCustomViewWithSetTypeface(Class)
      */
     private final Set<Class<?>> hasTypefaceViews;
@@ -196,13 +207,13 @@ public class CalligraphyConfig {
         /**
          * Add a custom style to get looked up. If you use a custom class that has a parent style
          * which is not part of the default android styles you will need to add it here.
-         *
+         * <p>
          * The Calligraphy inflater is unaware of custom styles in your custom classes. We use
          * the class type to look up the style attribute in the theme resources.
-         *
+         * <p>
          * So if you had a {@code MyTextField.class} which looked up it's default style as
          * {@code R.attr.textFieldStyle} you would add those here.
-         *
+         * <p>
          * {@code builder.addCustomStyle(MyTextField.class,R.attr.textFieldStyle}
          *
          * @param styleClass             the class that related to the parent styleResource. null is ignored.

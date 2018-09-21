@@ -1,10 +1,12 @@
 package io.github.inflationx.calligraphy3.sample;
 
+
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
-public class CustomTextView extends TextView {
+import androidx.appcompat.widget.AppCompatTextView;
+
+public class CustomTextView extends AppCompatTextView {
 
     public CustomTextView(Context context) {
         super(context);

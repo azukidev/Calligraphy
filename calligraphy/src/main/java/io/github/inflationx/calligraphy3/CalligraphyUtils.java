@@ -1,5 +1,6 @@
 package io.github.inflationx.calligraphy3;
 
+
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.content.res.Resources;
@@ -59,7 +60,7 @@ public final class CalligraphyUtils {
     /**
      * Applies a Typeface to a TextView, if deferred,its recommend you don't call this multiple
      * times, as this adds a TextWatcher.
-     *
+     * <p>
      * Deferring should really only be used on tricky views which get Typeface set by the system at
      * weird times.
      *

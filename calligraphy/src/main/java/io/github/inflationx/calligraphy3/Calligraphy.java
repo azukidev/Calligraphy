@@ -1,11 +1,11 @@
 package io.github.inflationx.calligraphy3;
 
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Build;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Method;
 
+import androidx.appcompat.widget.Toolbar;
 import io.github.inflationx.viewpump.ReflectionUtils;
 
 class Calligraphy {
@@ -57,7 +58,7 @@ class Calligraphy {
     protected static boolean isActionBarTitle(TextView view) {
         if (matchesResourceIdName(view, ACTION_BAR_TITLE)) return true;
         if (parentIsToolbarV7(view)) {
-            final android.support.v7.widget.Toolbar parent = (android.support.v7.widget.Toolbar) view.getParent();
+            final Toolbar parent = (Toolbar) view.getParent();
             return TextUtils.equals(parent.getTitle(), view.getText());
         }
         return false;
@@ -73,14 +74,14 @@ class Calligraphy {
     protected static boolean isActionBarSubTitle(TextView view) {
         if (matchesResourceIdName(view, ACTION_BAR_SUBTITLE)) return true;
         if (parentIsToolbarV7(view)) {
-            final android.support.v7.widget.Toolbar parent = (android.support.v7.widget.Toolbar) view.getParent();
+            final Toolbar parent = (Toolbar) view.getParent();
             return TextUtils.equals(parent.getSubtitle(), view.getText());
         }
         return false;
     }
 
     protected static boolean parentIsToolbarV7(View view) {
-        return CalligraphyUtils.canCheckForV7Toolbar() && view.getParent() != null && (view.getParent() instanceof android.support.v7.widget.Toolbar);
+        return CalligraphyUtils.canCheckForV7Toolbar() && view.getParent() != null && (view.getParent() instanceof Toolbar);
     }
 
     /**
@@ -154,7 +155,7 @@ class Calligraphy {
 
         // AppCompat API21+ The ActionBar doesn't inflate default Title/SubTitle, we need to scan the
         // Toolbar(Which underlies the ActionBar) for its children.
-        if (CalligraphyUtils.canCheckForV7Toolbar() && view instanceof android.support.v7.widget.Toolbar) {
+        if (CalligraphyUtils.canCheckForV7Toolbar() && view instanceof Toolbar) {
             final Toolbar toolbar = (Toolbar) view;
             toolbar.getViewTreeObserver().addOnGlobalLayoutListener(new ToolbarLayoutListener(this, context, toolbar));
         }
@@ -233,7 +234,8 @@ class Calligraphy {
         }
 
         @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-        @Override public void onGlobalLayout() {
+        @Override
+        public void onGlobalLayout() {
             final Toolbar toolbar = mToolbarReference.get();
             final Context context = mContextRef.get();
             final Calligraphy factory = mCalligraphyFactory.get();

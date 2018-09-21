@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.0 (21.8.2018)
+
+- migrated to androidx
+
 ## 3.0.0 (05/01/2017)
 - **BREAKING CHANGE** This library has been refactored into a [ViewPump](https://github.com/InflationX/ViewPump) interceptor 
 
