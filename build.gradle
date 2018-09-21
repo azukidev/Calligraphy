@@ -11,11 +11,11 @@ buildscript {
 
 allprojects {
   repositories {
+    maven { url 'https://jitpack.io' }
     google()
     mavenLocal()
     jcenter()
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-    maven { url 'https://jitpack.io' }
   }
   // Is Release Build?
   version = getProperty('VERSION_NAME')
